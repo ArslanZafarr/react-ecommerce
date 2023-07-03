@@ -26,6 +26,31 @@ const productReducer = (state, action) => {
                 featureProducts: featuredData,
             };
 
+
+        case "SET_SINGLE_LOADING":
+            return {
+                ...state,
+                isSingleLoading: true
+            };
+
+        case "SET_SINGLE_ERROR":
+            return {
+                ...state,
+                isSingleLoading: false,
+                isSingleError: true
+            };
+
+        case "SET_SINGLE_PRODUCT":
+            return {
+                ...state,
+                isSingleLoading: false,
+                isSingleError: false,
+                singleProduct: action.payload,
+
+            };
+
+
+
         default:
             return state
 
