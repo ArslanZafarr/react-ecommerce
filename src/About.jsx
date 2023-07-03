@@ -1,8 +1,11 @@
 import React from 'react'
+import HeroSection from './components/HeroSection'
 
 const About = () => {
     return (
-        <div>About</div>
+        <>
+            <HeroSection heading={"About Us"} imgUrl={"/images/c-c-5.jpg"} />
+        </>
     )
 }
 
