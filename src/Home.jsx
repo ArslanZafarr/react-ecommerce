@@ -1,14 +1,15 @@
 import React from 'react'
 import HeroSection from './components/HeroSection'
-import { useProductContext } from './context/productcontext'
+import FeaturedProducts from './components/FeaturedProducts'
 
 
 const Home = () => {
-  const myName = useProductContext();
+
   return (
     <>
-      <h1>  {myName}</h1>
+
       <HeroSection heading={"BORA BORA"} subHeading={"WELCOME TO"} imgUrl={"/images/hero.jpg"} />
+      <FeaturedProducts />
     </>
   )
 }
