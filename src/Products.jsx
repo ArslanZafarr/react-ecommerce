@@ -1,10 +1,9 @@
 import React from 'react'
-import ProductCard from './components/ProductCard';
 import ProductsList from './components/ProductsList';
 import { useFilterContext } from './context/filterContext';
 
 const Products = () => {
-    const { isGridView, isListView, gridView } = useFilterContext();
+    const { isGridView, isListView, gridView , sorting } = useFilterContext();
     return (
         <>
             <section className='products-section'>
@@ -59,11 +58,14 @@ const Products = () => {
                                 <p>40 item found</p>
                             </div>
 
-                            <select className="form-select product-price-sorting-selecter" aria-label="Default select example">
-                                <option selected>All</option>
-                                <option value="1">One</option>
-                                <option value="2">Two</option>
-                                <option value="3">Three</option>
+                            <select id='sort'
+                                onClick={sorting}
+                                className="form-select product-price-sorting-selecter"
+                                aria-label="Default select example" >
+                                <option selected value="lowest" >Price(lowest)</option>
+                                <option value="highest">Price (highest)</option>
+                                <option value="a-z">(a-z)</option>
+                                <option value="z-a">(z-a)</option>
                             </select>
                         </div>
 
@@ -77,8 +79,3 @@ const Products = () => {
 
 export default Products
 
-// {
-//     filterProducts.map((curElem) => {
-//         return <ProductCard key={curElem.id} {...curElem} />
-//     })
-// }

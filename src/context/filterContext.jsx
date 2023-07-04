@@ -6,6 +6,7 @@ const initialState = {
     filterProducts: [],
     allProducts: [],
     gridView: true,
+    sortingValue: "lowest",
 }
 
 const filterContext = createContext();
@@ -29,7 +30,17 @@ const FilterContextProvider = ({ children }) => {
     }, [products])
 
 
-    return <filterContext.Provider value={{ ...state, isGridView, isListView }}>{children}</filterContext.Provider>
+    // Price Sorting  Function
+
+    const sorting = () => {
+        dispatch({ type: "SET_SORT_VALUE" })
+    }
+
+    // Price Sorting  Dispatch
+
+    useEffect(() => { dispatch({ type: "SORTING_PRODUCTS_PRICE", payload: products }) }, [state.sortingValue])
+
+    return <filterContext.Provider value={{ ...state, isGridView, isListView, sorting }}>{children}</filterContext.Provider>
 }
 
 // custom Hooks 
