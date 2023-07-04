@@ -1,12 +1,10 @@
 import React from 'react'
-import { useFilterContext } from './context/filterContext'
 import ProductCard from './components/ProductCard';
+import ProductsList from './components/ProductsList';
+import { useFilterContext } from './context/filterContext';
 
 const Products = () => {
-    const { filterProducts } = useFilterContext();
-    console.log("🚀 ~ file: Products.jsx:6 ~ Products ~ filterProducts:", filterProducts)
-
-
+    const { isGridView, isListView, gridView } = useFilterContext();
     return (
         <>
             <section className='products-section'>
@@ -26,7 +24,7 @@ const Products = () => {
                         </div>
                         <div className='product-category-filter'>
                             <h3 className='filter-heading'>Company</h3>
-                            <select class="form-select" aria-label="Default select example">
+                            <select className="form-select" aria-label="Default select example">
                                 <option selected>All</option>
                                 <option value="1">One</option>
                                 <option value="2">Two</option>
@@ -36,7 +34,7 @@ const Products = () => {
 
                         <div className='product-category-filter'>
                             <h3 className='filter-heading'>Color</h3>
-                            <select class="form-select" aria-label="Default select example">
+                            <select className="form-select" aria-label="Default select example">
                                 <option selected>All</option>
                                 <option value="1">One</option>
                                 <option value="2">Two</option>
@@ -54,14 +52,14 @@ const Products = () => {
                     <div className='product-listing-column'>
                         <div className='product-grid-view-toggle-and-sorting'>
                             <div className='product-view-toggle-btns'>
-                                <button>Grid</button>
-                                <button>List</button>
+                                <button onClick={isGridView} className={gridView ? "product-layout-toggle-btn active" : "product-layout-toggle-btn"} >Grid</button>
+                                <button onClick={isListView} className={!gridView ? "product-layout-toggle-btn active" : "product-layout-toggle-btn"}>List</button>
                             </div>
                             <div>
                                 <p>40 item found</p>
                             </div>
 
-                            <select class="form-select product-price-sorting-selecter" aria-label="Default select example">
+                            <select className="form-select product-price-sorting-selecter" aria-label="Default select example">
                                 <option selected>All</option>
                                 <option value="1">One</option>
                                 <option value="2">Two</option>
@@ -69,13 +67,7 @@ const Products = () => {
                             </select>
                         </div>
 
-                        <div className='products-list'>
-                            {
-                                filterProducts.map((curElem) => {
-                                    return <ProductCard key={curElem.id} {...curElem} />
-                                })
-                            }
-                        </div>
+                        <ProductsList />
                     </div>
                 </div>
             </section>
@@ -84,3 +76,9 @@ const Products = () => {
 }
 
 export default Products
+
+// {
+//     filterProducts.map((curElem) => {
+//         return <ProductCard key={curElem.id} {...curElem} />
+//     })
+// }
