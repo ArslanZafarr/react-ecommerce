@@ -7,19 +7,28 @@ const API = "https://api.pujakaitem.com/api/products/"
 const SingleProduct = () => {
     const { id } = useParams();
     const { getSingleProduct, isSingleLoading, singleProduct, isSingleError } = useProductContext();
-    console.log("🚀 ~ file: SingleProduct.jsx:10 ~ SingleProduct ~ singleProduct:", singleProduct)
+
 
     useEffect(() => {
         getSingleProduct(`${API}${id}`)
     }, [])
 
-    const { name, company, price, description, category, stock, reviews, stars, image } = singleProduct
-    console.log("🚀 ~ file: SingleProduct.jsx:17 ~ SingleProduct ~ image:", image)
+    const { name, company, price, description, category, stock, reviews, stars, image = [{}] } = singleProduct
+
 
     if (isSingleLoading) {
         return <>
             <div className='loading-content'>
                 <h1>Loading.........</h1>
+            </div>
+
+        </>
+    }
+
+    if (isSingleError) {
+        return <>
+            <div className='loading-content'>
+                <h1>Error.........</h1>
             </div>
 
         </>

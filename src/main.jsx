@@ -4,11 +4,13 @@ import App from './App.jsx'
 import './index.css'
 import 'bootstrap/dist/css/bootstrap.css';
 import { AppProvider } from './context/productcontext.jsx';
-
+import { FilterContextProvider } from './context/filterContext.jsx';
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <AppProvider>
-      <App />
+      <FilterContextProvider>
+        <App />
+      </FilterContextProvider>
     </AppProvider>
   </React.StrictMode>,
 )

@@ -1,8 +1,12 @@
 import React from 'react'
-import FeaturedProductCard from './components/FeaturedProductCard'
-import ProductCard from './components/ProductCard'
+import { useFilterContext } from './context/filterContext'
+import ProductCard from './components/ProductCard';
 
 const Products = () => {
+    const { filterProducts } = useFilterContext();
+    console.log("🚀 ~ file: Products.jsx:6 ~ Products ~ filterProducts:", filterProducts)
+
+
     return (
         <>
             <section className='products-section'>
@@ -66,16 +70,11 @@ const Products = () => {
                         </div>
 
                         <div className='products-list'>
-
-                            <ProductCard />
-                            <ProductCard />
-                            <ProductCard />
-                            <ProductCard />
-                            <ProductCard />
-                            <ProductCard />
-                            <ProductCard />
-                            <ProductCard />
-                            <ProductCard />
+                            {
+                                filterProducts.map((curElem) => {
+                                    return <ProductCard key={curElem.id} {...curElem} />
+                                })
+                            }
                         </div>
                     </div>
                 </div>
