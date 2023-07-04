@@ -10,7 +10,6 @@ const GridView = () => {
                 return <ProductCard key={curElem} {...curElem} />
             })}
 
-
         </div>
     )
 }

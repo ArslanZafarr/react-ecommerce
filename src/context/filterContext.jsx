@@ -7,6 +7,9 @@ const initialState = {
     allProducts: [],
     gridView: true,
     sortingValue: "lowest",
+    filters : {
+        text : ""
+    }
 }
 
 const filterContext = createContext();
@@ -30,17 +33,26 @@ const FilterContextProvider = ({ children }) => {
     }, [products])
 
 
-    // Price Sorting  Function
-
-    const sorting = () => {
-        dispatch({ type: "SET_SORT_VALUE" })
+    // Search Filter 
+    const updateSearchFilter = (event) => {
+        let name = event.target.name
+        let value = event.target.value
+return  dispatch({type: "SEARCH_FILTER" ,  payload : {name , value}} )
     }
 
+    // Price Sorting  Function
+    const sorting = () => {
+        dispatch({ type: "SET_SORT_VALUE"  })
+    }
+
+useEffect(() => { dispatch({type: "SEARCH_FILTER_RESULTS"});} , [state.filters])
+
     // Price Sorting  Dispatch
+    useEffect(() => { 
+        dispatch({ type: "SORTING_PRODUCTS_PRICE", payload: products }) }, 
+        [products , state.sortingValue ])
 
-    useEffect(() => { dispatch({ type: "SORTING_PRODUCTS_PRICE", payload: products }) }, [state.sortingValue])
-
-    return <filterContext.Provider value={{ ...state, isGridView, isListView, sorting }}>{children}</filterContext.Provider>
+    return <filterContext.Provider value={{ ...state, isGridView, isListView, sorting, updateSearchFilter }}>{children}</filterContext.Provider>
 }
 
 // custom Hooks 
