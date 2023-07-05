@@ -3,16 +3,20 @@ import reducer from "../reducers/filterReducer";
 import { useProductContext } from "./productcontext";
 
 const initialState = {
+    isFilterLoading: false,
     filterProducts: [],
     allProducts: [],
     gridView: true,
     sortingValue: "lowest",
     filters: {
         text: "",
-        category : "all",
-        
+        category: "all",
+        company: "all",
+        colors: "all",
+
     },
 };
+
 
 const filterContext = createContext();
 
@@ -29,6 +33,7 @@ const FilterContextProvider = ({ children }) => {
     };
 
     useEffect(() => {
+        dispatch({ type: "FILTER_PRODUCTS_LOADING" })
         dispatch({ type: "SET_FILTER_PRODUCTS", payload: products });
     }, [products]);
 

@@ -1,8 +1,15 @@
 const filterReducer = (state, action) => {
     switch (action.type) {
+        case "FILTER_PRODUCTS_LOADING":
+            return {
+                ...state,
+                isFilterLoading: true,
+            };
+
         case "SET_FILTER_PRODUCTS":
             return {
                 ...state,
+                isFilterLoading: false,
                 filterProducts: [...action.payload],
                 allProducts: [...action.payload],
             };
@@ -47,7 +54,7 @@ const filterReducer = (state, action) => {
             }
 
             if (state.sortingValue === "a-z") {
-                newSortData = existingSortingData.sort((a, b) =>   a.name.localeCompare(b.name)
+                newSortData = existingSortingData.sort((a, b) => a.name.localeCompare(b.name)
                 );
             }
 
@@ -56,10 +63,10 @@ const filterReducer = (state, action) => {
                 );
             }
 
-             return {
+            return {
                 ...state,
-                 filterProducts : newSortData,
-               };
+                filterProducts: newSortData,
+            };
 
         case "SEARCH_FILTER":
             const { name, value } = action.payload;
@@ -75,7 +82,7 @@ const filterReducer = (state, action) => {
             let { allProducts } = state;
             let existingProduct = [...allProducts];
 
-            const { text , category } = state.filters;
+            const { text, category, company, colors } = state.filters;
 
             if (text) {
                 existingProduct = existingProduct.filter((curElem) => {
@@ -83,21 +90,31 @@ const filterReducer = (state, action) => {
                 });
             }
 
-            if (category) {
-                existingProduct = existingProduct.filter((curElem) => {
-                    return curElem.category === category
-                });
+            if (category !== "all") {
+                existingProduct = existingProduct.filter(
+                    (curElem) => curElem.category === category
+                );
             }
+
+            if (company !== "all") {
+                existingProduct = existingProduct.filter(
+                    (curElem) => curElem.company.toLowerCase() === company.toLowerCase()
+                );
+            }
+
+            if (colors !== "all") {
+                existingProduct = existingProduct.filter(
+                    (curElem) => curElem.colors.includes(colors)
+                );
+            }
+
 
             return {
                 ...state,
                 filterProducts: existingProduct,
             };
 
-        // return {
-        // ...state,
-        // filterProducts: newSortData,
-        // }
+
 
         default:
             return state;
