@@ -1,23 +1,22 @@
 const productReducer = (state, action) => {
-
     switch (action.type) {
         case "SET_LOADING":
             return {
                 ...state,
-                isLoading: true
+                isLoading: true,
             };
 
         case "SET_ERROR":
             return {
                 ...state,
                 isLoading: false,
-                isError: true
+                isError: true,
             };
 
         case "SET_API_DATA":
             const featuredData = action.payload.filter((curElem) => {
-                return curElem.featured === true
-            })
+                return curElem.featured === true;
+            });
             return {
                 ...state,
                 isLoading: false,
@@ -26,18 +25,17 @@ const productReducer = (state, action) => {
                 featureProducts: featuredData,
             };
 
-
         case "SET_SINGLE_LOADING":
             return {
                 ...state,
-                isSingleLoading: true
+                isSingleLoading: true,
             };
 
         case "SET_SINGLE_ERROR":
             return {
                 ...state,
                 isSingleLoading: false,
-                isSingleError: true
+                isSingleError: true,
             };
 
         case "SET_SINGLE_PRODUCT":
@@ -46,16 +44,11 @@ const productReducer = (state, action) => {
                 isSingleLoading: false,
                 isSingleError: false,
                 singleProduct: action.payload,
-
             };
 
-
-
         default:
-            return state
-
+            return state;
     }
+};
 
-}
-
-export default productReducer
+export default productReducer;

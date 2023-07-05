@@ -7,7 +7,7 @@ const ListView = () => {
     return (
         <div className='products-list-view'>
             {filterProducts.map((curElem) => {
-                return <ProductCard key={curElem} {...curElem} />
+                return <ProductCard key={curElem.id} {...curElem} />
             })}
 
 

@@ -7,6 +7,7 @@ const Home = () => {
 
   return (
     <>
+   
 
       <HeroSection heading={"BORA BORA"} subHeading={"WELCOME TO"} imgUrl={"/images/hero.jpg"} />
       <FeaturedProducts />

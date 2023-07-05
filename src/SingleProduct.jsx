@@ -1,10 +1,30 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { NavLink, useParams } from 'react-router-dom'
 import { useProductContext } from './context/productcontext';
 
 const API = "https://api.pujakaitem.com/api/products/"
 
 const SingleProduct = () => {
+     const [count , setCount]  = useState(1);
+
+const increment = () => {
+    return setCount (count + 1)
+}
+
+
+const decrement = () => {
+    if (count===1 ){
+    return 1
+    }
+    else
+     setCount (count - 1)
+}
+
+  
+  
+
+  
+
     const { id } = useParams();
     const { getSingleProduct, isSingleLoading, singleProduct, isSingleError } = useProductContext();
 
@@ -91,9 +111,9 @@ const SingleProduct = () => {
                             </div>
 
                             <div className='product-cart-item-increment-decrement'>
-                                <button>-</button>
-                                <p>1</p>
-                                <button>+</button>
+                                <button onClick={decrement}>-</button>
+                                <p>{count}</p>
+                                <button onClick={increment}> +</button>
                             </div>
 
                             <button className='add-to-cart-btn'>Add to Cart</button>

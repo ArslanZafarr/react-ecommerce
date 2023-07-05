@@ -7,7 +7,7 @@ const GridView = () => {
     return (
         <div className='products-list'>
             {filterProducts.map((curElem) => {
-                return <ProductCard key={curElem} {...curElem} />
+                return <ProductCard key={curElem.id} {...curElem} />
             })}
 
         </div>

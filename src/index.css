@@ -1,3 +1,7 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap");
 
 * {
@@ -52,6 +56,54 @@
   color: red;
 }
 
+/* Footer  */
+
+.footer-section{
+  padding: 80px 0px;
+  height: 400px;
+  background-color: #16161d;
+  color: #fff;
+}
+
+.footer-container{
+  max-width: 1366px;
+}
+
+.footer-content{
+  display: flex;
+  gap: 64px;
+}
+
+.footer-about p{
+  width: 400px;
+}
+
+.footer-services-coulmns{
+  display: flex;
+  gap: 48px;
+}
+
+.footer-column h4{
+  font-size: 24px;
+  line-height: 32px;
+  color: #fff;
+  margin-bottom: 20px;
+}
+
+.footer-column ul{
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  text-align: start;
+}
+
+
+
+.footer-column ul li{
+  list-style: none;
+  text-align: start;
+}
+
 /* Hero Section Style  */
 .hero-section {
   padding: 132px 0px;
@@ -98,9 +150,25 @@
   column-gap: 24px;
   grid-template-columns: 1fr 1fr 1fr;
 }
+.featured-section{
+     padding: 128px 0;
+  background-color: #e5e5e5;
+}
 
 .featured-container {
   max-width: 1366px;
+}
+
+
+.featured-products-heading {
+  margin-bottom: 40px;
+}
+
+.featured-products-heading h4{
+  font-size: 32px;
+  line-height: 48px;
+  color: #16161d;
+  font-weight: 600;
 }
 
 .featured-product-card {
