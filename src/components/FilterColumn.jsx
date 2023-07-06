@@ -3,7 +3,7 @@ import { useFilterContext } from '../context/filterContext';
 import { FaCheck } from 'react-icons/fa'
 
 const FilterColumn = () => {
-  const { updateSearchFilter, filters: { text, colors, price, minPrice, maxPrice }, allProducts } = useFilterContext()
+  const { updateSearchFilter, filters: { text, colors, price, minPrice, maxPrice }, allProducts, clearFilters } = useFilterContext()
 
   const getUniqueValue = (data, property) => {
     let dataValue = data.map((curElem) => {
@@ -101,7 +101,7 @@ const FilterColumn = () => {
 
       </div>
 
-      <button className="clear-filter-btn">Clear Filter</button>
+      <button type='button' onClick={clearFilters} className="clear-filter-btn">Clear Filter</button>
     </div>
   )
 }

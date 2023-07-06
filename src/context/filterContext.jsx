@@ -60,6 +60,11 @@ const FilterContextProvider = ({ children }) => {
         dispatch({ type: "SORTING_PRODUCTS_PRICE", payload: products });
     }, [products, state.sortingValue]);
 
+    //    CLear Filters 
+    const clearFilters = () => {
+        dispatch({ type: "CLEAR_FILTERS" })
+    }
+
     return (
         <filterContext.Provider
             value={{
@@ -68,6 +73,7 @@ const FilterContextProvider = ({ children }) => {
                 isListView,
                 sorting,
                 updateSearchFilter,
+                clearFilters
             }}
         >
             {children}
