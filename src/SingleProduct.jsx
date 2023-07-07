@@ -1,39 +1,44 @@
 import React, { useEffect, useState } from 'react'
 import { NavLink, useParams } from 'react-router-dom'
 import { useProductContext } from './context/productcontext';
-
+import { FaCheck } from 'react-icons/fa'
+import { useCartContext } from './context/cartContext';
 const API = "https://api.pujakaitem.com/api/products/"
 
 const SingleProduct = () => {
-     const [count , setCount]  = useState(1);
-
-const increment = () => {
-    return setCount (count + 1)
-}
-
-
-const decrement = () => {
-    if (count===1 ){
-    return 1
-    }
-    else
-     setCount (count - 1)
-}
-
-  
-  
-
-  
-
     const { id } = useParams();
     const { getSingleProduct, isSingleLoading, singleProduct, isSingleError } = useProductContext();
 
+    const { name, company, price, colors, description, stock, reviews, image = [{}] } = singleProduct
+
+    const { addDataToCart } = useCartContext()
+
+
+    let cartProduct = singleProduct
+
+    // let firstColor = colors[0]
+
+    const [color, setColor] = useState(colors && colors.length > 0 ? colors[0] : null)
+
+
+    const [amount, setAmount] = useState(1);
+
+    const increment = () => {
+        amount < stock ? setAmount(amount + 1) : setAmount(stock)
+        // return setAmount(amount + 1)
+    }
+
+    const decrement = () => {
+        if (amount === 1) {
+            return 1
+        }
+        else
+            setAmount(amount - 1)
+    }
 
     useEffect(() => {
         getSingleProduct(`${API}${id}`)
     }, [])
-
-    const { name, company, price, description, category, stock, reviews, stars, image = [{}] } = singleProduct
 
 
     if (isSingleLoading) {
@@ -53,27 +58,27 @@ const decrement = () => {
 
         </>
     }
-
     return (
         <>
+
             <section className='single-product-section'>
                 <div className='container-fluid single-product-container'>
                     <nav aria-label="breadcrumb">
-                        <ol class="breadcrumb">
+                        <ol className="breadcrumb">
                             <NavLink to='/'>
-                                <li class="breadcrumb-item">
+                                <li className="breadcrumb-item">
                                     Home
                                 </li>
                             </NavLink>
 
-                            <li class="breadcrumb-item active" aria-current="page">{name}</li>
+                            <li className="breadcrumb-item active" aria-current="page">{name}</li>
                         </ol>
                     </nav>
                     <div className='single-product-content-wrapper'>
                         <div className='single-product-features-image-gallery'>
                             <div className='single-product-slider-images'>
-                                {image.map((curImage) => {
-                                    return <img src={curImage.url} alt="featured product image" />
+                                {image.map((curImage, index) => {
+                                    return <img key={index} src={curImage.url} alt="featured product image" />
                                 })}
                             </div>
                             <div className='singe-product-featured-image'>
@@ -96,7 +101,7 @@ const decrement = () => {
                             <div className='single-product-info'>
                                 <div>
                                     <h5>Available :</h5>
-                                    <h6>In Stock</h6>
+                                    <h6>{stock > 0 ? "In stock" : "Out of Stock"}</h6>
                                 </div>
                                 <div>
                                     <h5>Brand :</h5>
@@ -105,18 +110,32 @@ const decrement = () => {
                             </div>
 
                             <div className='single-product-color-picker'>
-                                <h5>red </h5>
-                                <h5>red </h5>
-                                <h5>red </h5>
+                                <div className='single-product-colors-row'>
+                                    {colors?.map((curColor, index) => {
+                                        return <button key={index} style={{ backgroundColor: curColor }}
+                                            className={color === curColor ? "single-product-color-button active" : "single-product-color-button"}
+                                            onClick={() => setColor(curColor)}
+                                        >
+                                            {color === curColor && <FaCheck style={{ color: 'white' }} />}
+
+                                        </button>
+                                    })}
+                                </div>
                             </div>
 
                             <div className='product-cart-item-increment-decrement'>
                                 <button onClick={decrement}>-</button>
-                                <p>{count}</p>
+                                <p>{amount}</p>
                                 <button onClick={increment}> +</button>
                             </div>
+                            <NavLink to="/cart"  >
+                                <button
+                                    onClick={() => addDataToCart(id, color, amount, cartProduct)}
+                                    className='add-to-cart-btn'
+                                >Add to Cart</button> </NavLink>
 
-                            <button className='add-to-cart-btn'>Add to Cart</button>
+
+
                         </div>
                     </div>
                 </div>

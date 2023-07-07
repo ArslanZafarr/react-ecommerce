@@ -4,14 +4,14 @@ import FilterColumn from "./components/FilterColumn";
 import ProductSorting from "./components/ProductSorting";
 
 const Products = () => {
- 
+
   return (
     <>
       <section className="products-section">
         <div className="container-fluid products-container">
-       <FilterColumn/>
+          <FilterColumn />
           <div className="product-listing-column">
-            <ProductSorting/>
+            <ProductSorting />
             <ProductsList />
           </div>
         </div>

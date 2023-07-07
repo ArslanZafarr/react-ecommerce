@@ -1,6 +1,9 @@
 import React from 'react'
+import { useCartContext } from './context/cartContext'
 
 const Cart = () => {
+    const { cart } = useCartContext();
+    console.log("🚀 ~ file: Cart.jsx:6 ~ Cart ~ cart:", cart)
     return (
         <>
             <section className='cart-section'>

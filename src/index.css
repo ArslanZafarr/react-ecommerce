@@ -281,6 +281,26 @@
   padding: 5px 10px;
   font-size: 18px;
 }
+
+.single-product-colors-row {
+  display: flex;
+  gap: 6px;
+}
+.single-product-color-button {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  opacity: 0.5;
+}
+
+.single-product-color-button .active {
+  opacity: 1;
+}
+
 .add-to-cart-btn {
   margin-top: 20px;
   padding: 10px 20px;
@@ -378,24 +398,22 @@ span {
   color: red;
 }
 
-
-.filter-colors-row{
+.filter-colors-row {
   display: flex;
   gap: 6px;
 }
 
-.filter-color-btn{
+.filter-color-btn {
   width: 24px;
   height: 24px;
 
   border-radius: 50%;
-   display: flex;
-   justify-content: center;
-   align-items: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-
-.color-filter-all-btn{
+.color-filter-all-btn {
   background-color: transparent;
   color: black;
 }

@@ -11,8 +11,6 @@ const filterReducer = (state, action) => {
             let priceArray = action.payload.map((curElem) => curElem.price)
 
             let maxPrice = Math.max(...priceArray)
-            console.log("🚀 ~ file: filterReducer.jsx:14 ~ filterReducer ~ maxPrice:", maxPrice)
-
 
             return {
                 ...state,
