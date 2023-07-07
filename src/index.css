@@ -52,6 +52,26 @@
   color: red;
 }
 
+.cart-nav-link {
+  position: relative;
+}
+
+.cart-nav-link-number {
+  position: absolute;
+  right: -30px;
+  bottom: -5px;
+  padding: 9px;
+  background-color: gray;
+  border-radius: 50%;
+  color: yellow;
+  font-size: 14px;
+  line-height: 19px;
+  font-weight: 400;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 /* Footer  */
 
 .footer-section {

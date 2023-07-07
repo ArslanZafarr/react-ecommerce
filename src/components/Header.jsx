@@ -1,8 +1,10 @@
 
 import React from 'react'
 import { NavLink } from 'react-router-dom'
+import { useCartContext } from '../context/cartContext'
 
 const Header = () => {
+    const { cart } = useCartContext()
     return (
         <div className='header-wrapper'>
             <div className='container-fluid header-container'>
@@ -33,9 +35,13 @@ const Header = () => {
                             Contact
                         </NavLink>
                     </li>
-                    <li>
+                    <li className='cart-nav-link'>
                         <NavLink to="/cart">
                             Cart
+                            {
+                                cart.length > 0 ? <span className='cart-nav-link-number'>{cart.length}</span> : null
+                            }
+
                         </NavLink>
                     </li>
                 </nav>
