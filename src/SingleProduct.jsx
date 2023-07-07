@@ -11,7 +11,8 @@ const SingleProduct = () => {
 
     const { name, company, price, colors, description, stock, reviews, image = [{}] } = singleProduct
 
-    const { addDataToCart } = useCartContext()
+    const { addDataToCart, cart } = useCartContext()
+    console.log("🚀 ~ file: SingleProduct.jsx:15 ~ SingleProduct ~ cart:", cart)
 
 
     let cartProduct = singleProduct

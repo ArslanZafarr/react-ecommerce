@@ -1,9 +1,14 @@
 import React from 'react'
 import { useCartContext } from './context/cartContext'
+import { FaTrash } from 'react-icons/fa';
+
+
 
 const Cart = () => {
     const { cart } = useCartContext();
+    const { id, color, image, name, price, amount } = cart
     console.log("🚀 ~ file: Cart.jsx:6 ~ Cart ~ cart:", cart)
+
     return (
         <>
             <section className='cart-section'>
@@ -17,35 +22,41 @@ const Cart = () => {
                             <h5>REMOVE</h5>
                         </div>
                         <div className='cart-item-wrapper'>
-                            <div className='cart-item'>
-                                <div className='cart-product-name-details'>
-                                    <img src="/images/hero.jpg" alt="cart product" />
-                                    <div className='cart-product-name-color'>
-                                        <h5>iphone</h5>
-                                        <div className='product-cart-item-color'>
-                                            color : <span>red</span>
+                            {cart.map((cartItem) => {
+                                return (<div className='cart-item' key={id}>
+                                    <div className='cart-product-name-details'>
+                                        <img src={cartItem.image} alt="cart product" />
+                                        <div className='cart-product-name-color'>
+                                            <h5>{cartItem.name}</h5>
+                                            <div className='product-cart-item-color'>
+                                                color : <button className='cart-item-color-btn' style={{ backgroundColor: cartItem.color }}></button>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
 
-                                <div className='cart-item-price'>
-                                    <h5>Rs 14999</h5>
-                                </div>
-                                <div className='cart-item-quantity'>
-                                    <button>-</button>
-                                    <p>1</p>
-                                    <button>+</button>
-                                </div>
-                                <div className='cart-item-price'>
-                                    <h5>Rs 14999</h5>
-                                </div>
-                                <div className='cart-item-price'>
-                                    <button>Remove</button>
-                                </div>
-                                <div>
+                                    <div className='cart-item-price'>
+                                        <h5>{cartItem.price}</h5>
+                                    </div>
+                                    <div className='cart-item-quantity'>
+                                        <button onClick={cartItemIncrease} >-</button>
+                                        <p>{cartItem.amount}</p>
+                                        <button>+</button>
+                                    </div>
+                                    <div className='cart-item-price'>
+                                        <h5>{cartItem.price * cartItem.amount}</h5>
+                                    </div>
+                                    <div className='cart-item-price'>
+                                        <button className='cart-item-remove-btn'><FaTrash style={{ color: "red" }} /></button>
+                                    </div>
+                                    <div>
 
+                                    </div>
                                 </div>
-                            </div>
+                                )
+                            })
+
+                            }
+
 
                         </div>
                         <div className='clear-cart-continue-shopping-btns'>

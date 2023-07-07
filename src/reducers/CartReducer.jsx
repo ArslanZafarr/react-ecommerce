@@ -6,10 +6,13 @@ const CartReducer = (state, action) => {
 
         cartItemData = {
             id: id + color,
+
+            image: cartProduct.image[0].url,
+            name: cartProduct.name,
             color,
             price: cartProduct.price,
             amount,
-            // max: cartProduct.stock,
+            max: cartProduct.stock,
 
         }
 
