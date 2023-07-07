@@ -1,13 +1,23 @@
 import React from 'react'
 import { useCartContext } from './context/cartContext'
 import { FaTrash } from 'react-icons/fa';
+import { NavLink } from 'react-router-dom';
+
 
 
 
 const Cart = () => {
-    const { cart, removeItem } = useCartContext();
+    const { cart, removeItem, clearCart } = useCartContext();
     const { id, color, image, name, price, amount } = cart
-    console.log("🚀 ~ file: Cart.jsx:6 ~ Cart ~ cart:", cart)
+
+
+    if (cart.length === 0) {
+        return (
+            <div className='loading-content'>
+                <h1>No Item in Cart</h1>
+            </div>
+        )
+    }
 
     return (
         <>
@@ -60,8 +70,11 @@ const Cart = () => {
 
                         </div>
                         <div className='clear-cart-continue-shopping-btns'>
-                            <button>Continue Shopping</button>
-                            <button>Clear Cart</button>
+                            <NavLink to="/products">
+                                <button>Continue Shopping</button>
+                            </NavLink>
+
+                            <button onClick={clearCart}>Clear Cart</button>
                         </div>
                         <div className='cart-total-wrapper'>
                             <div className='cart-total-content'>

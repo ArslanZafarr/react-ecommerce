@@ -46,7 +46,13 @@ const CartContextProvider = ({ children }) => {
     }, [state.cart])
 
 
-    return <CartContext.Provider value={{ ...state, addDataToCart, removeItem }} >{children}</CartContext.Provider>
+    // To clear Cart 
+
+    const clearCart = () => {
+        dispatch({ type: "CLEAR_CART" })
+    }
+
+    return <CartContext.Provider value={{ ...state, addDataToCart, removeItem, clearCart }} >{children}</CartContext.Provider>
 }
 
 // custom hooks 
