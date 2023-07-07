@@ -5,7 +5,7 @@ import { FaTrash } from 'react-icons/fa';
 
 
 const Cart = () => {
-    const { cart } = useCartContext();
+    const { cart, removeItem } = useCartContext();
     const { id, color, image, name, price, amount } = cart
     console.log("🚀 ~ file: Cart.jsx:6 ~ Cart ~ cart:", cart)
 
@@ -38,7 +38,7 @@ const Cart = () => {
                                         <h5>{cartItem.price}</h5>
                                     </div>
                                     <div className='cart-item-quantity'>
-                                        <button onClick={cartItemIncrease} >-</button>
+                                        <button  >-</button>
                                         <p>{cartItem.amount}</p>
                                         <button>+</button>
                                     </div>
@@ -46,7 +46,7 @@ const Cart = () => {
                                         <h5>{cartItem.price * cartItem.amount}</h5>
                                     </div>
                                     <div className='cart-item-price'>
-                                        <button className='cart-item-remove-btn'><FaTrash style={{ color: "red" }} /></button>
+                                        <button onClick={() => removeItem(id)} className='cart-item-remove-btn'><FaTrash style={{ color: "red" }} /></button>
                                     </div>
                                     <div>
 
