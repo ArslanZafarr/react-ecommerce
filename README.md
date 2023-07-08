@@ -29,7 +29,7 @@ Start the server
   npm run dev
 ```
 
-## Know Issues
+## Known Issues
 
 - Design Issues
 - Responsiveness 
