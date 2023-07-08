@@ -7,8 +7,8 @@ import { NavLink } from 'react-router-dom';
 
 
 const Cart = () => {
-    const { cart, removeItem, clearCart } = useCartContext();
-    const { id, color, image, name, price, amount } = cart
+    const { cart, removeItem, clearCart, setDecrease, setIncrease } = useCartContext();
+    // const { id } = cart
 
 
     if (cart.length === 0) {
@@ -33,7 +33,7 @@ const Cart = () => {
                         </div>
                         <div className='cart-item-wrapper'>
                             {cart.map((cartItem) => {
-                                return (<div className='cart-item' key={id}>
+                                return (<div className='cart-item' key={cartItem.id}>
                                     <div className='cart-product-name-details'>
                                         <img src={cartItem.image} alt="cart product" />
                                         <div className='cart-product-name-color'>
@@ -48,15 +48,15 @@ const Cart = () => {
                                         <h5>{cartItem.price}</h5>
                                     </div>
                                     <div className='cart-item-quantity'>
-                                        <button  >-</button>
+                                        <button onClick={() => setDecrease(cartItem.id)}  >-</button>
                                         <p>{cartItem.amount}</p>
-                                        <button>+</button>
+                                        <button onClick={() => setIncrease(cartItem.id)} > +</button>
                                     </div>
                                     <div className='cart-item-price'>
                                         <h5>{cartItem.price * cartItem.amount}</h5>
                                     </div>
                                     <div className='cart-item-price'>
-                                        <button onClick={() => removeItem(id)} className='cart-item-remove-btn'><FaTrash style={{ color: "red" }} /></button>
+                                        <button onClick={() => removeItem(cartItem.id)} className='cart-item-remove-btn'><FaTrash style={{ color: "red" }} /></button>
                                     </div>
                                     <div>
 

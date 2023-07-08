@@ -52,7 +52,21 @@ const CartContextProvider = ({ children }) => {
         dispatch({ type: "CLEAR_CART" })
     }
 
-    return <CartContext.Provider value={{ ...state, addDataToCart, removeItem, clearCart }} >{children}</CartContext.Provider>
+
+    // To Increase Quantity item 
+    const setIncrease = (id) => {
+        dispatch({ type: "SET_INCREASE", payload: id })
+    }
+
+
+    // To Decrease Quantity item 
+    const setDecrease = (id) => {
+        dispatch({ type: "SET_DECREASE", payload: id })
+    }
+
+
+
+    return <CartContext.Provider value={{ ...state, addDataToCart, removeItem, clearCart, setIncrease, setDecrease }} >{children}</CartContext.Provider>
 }
 
 // custom hooks 
