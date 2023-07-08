@@ -18,8 +18,8 @@ const initialState = {
     // cart: [],
     cart: getLocalCart(),
     total_items: "",
-    total_amount: "",
-    shipping_fee: "",
+    total_amount: '',
+    shipping_fee: 500,
 }
 
 const CartContext = createContext();
@@ -41,6 +41,7 @@ const CartContextProvider = ({ children }) => {
     // To store Items in local Storage 
     useEffect(() => {
         dispatch({ type: "CART_TOTAL_ITEMS" })
+        dispatch({ type: "CART_TOTAL_PRICE" })
         localStorage.setItem("StoreCart", JSON.stringify(state.cart))
     }, [state.cart])
 

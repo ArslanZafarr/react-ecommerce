@@ -7,7 +7,7 @@ import { NavLink } from 'react-router-dom';
 
 
 const Cart = () => {
-    const { cart, removeItem, clearCart, setDecrease, setIncrease } = useCartContext();
+    const { cart, removeItem, clearCart, setDecrease, setIncrease, total_amount, shipping_fee } = useCartContext();
     // const { id } = cart
 
 
@@ -45,7 +45,7 @@ const Cart = () => {
                                     </div>
 
                                     <div className='cart-item-price'>
-                                        <h5>{cartItem.price}</h5>
+                                        <h5>Rs {cartItem.price}</h5>
                                     </div>
                                     <div className='cart-item-quantity'>
                                         <button onClick={() => setDecrease(cartItem.id)}  >-</button>
@@ -53,7 +53,7 @@ const Cart = () => {
                                         <button onClick={() => setIncrease(cartItem.id)} > +</button>
                                     </div>
                                     <div className='cart-item-price'>
-                                        <h5>{cartItem.price * cartItem.amount}</h5>
+                                        <h5> Rs {cartItem.price * cartItem.amount}</h5>
                                     </div>
                                     <div className='cart-item-price'>
                                         <button onClick={() => removeItem(cartItem.id)} className='cart-item-remove-btn'><FaTrash style={{ color: "red" }} /></button>
@@ -80,15 +80,15 @@ const Cart = () => {
                             <div className='cart-total-content'>
                                 <div className='cart-total-prices'>
                                     <h5>SUBTOTAL</h5>
-                                    <span>Rs 1499</span>
+                                    <span> Rs {total_amount}</span>
                                 </div>
                                 <div className='cart-total-prices'>
                                     <h5>Shipping </h5>
-                                    <span>Rs 1499</span>
+                                    <span>Rs {shipping_fee}</span>
                                 </div>
                                 <div className='cart-total-prices'>
                                     <h5>Order Total</h5>
-                                    <span>Rs 1499</span>
+                                    <span>Rs {total_amount + shipping_fee}</span>
                                 </div>
                             </div>
                         </div>
