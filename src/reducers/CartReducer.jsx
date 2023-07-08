@@ -1,9 +1,7 @@
 const CartReducer = (state, action) => {
 
-
     if (action.type === "ADD_TO_CART") {
         let { id, color, amount, cartProduct } = action.payload
-
 
         // Condition for existing Product with same color 
         let existingProduct = state.cart.find(
@@ -76,7 +74,6 @@ const CartReducer = (state, action) => {
     }
 
 
-
     if (action.type === "SET_INCREASE") {
         let updateProduct = state.cart.map((curElem) => {
             if (curElem.id === action.payload) {
@@ -118,11 +115,12 @@ const CartReducer = (state, action) => {
         }
     }
 
+
     if (action.type === "CART_TOTAL_ITEMS") {
-        let updatedCartValue = state.cart.reduce((acc, curElem) => {
+        let updatedCartValue = state.cart.reduce((initialValue, curElem) => {
             let { amount } = curElem
-            acc = acc + amount
-            return acc
+            initialValue = initialValue + amount
+            return initialValue
         }, 0);
         return {
             ...state,
@@ -131,19 +129,17 @@ const CartReducer = (state, action) => {
     }
 
 
-
     if (action.type === "CART_TOTAL_PRICE") {
-        let total_amount = state.cart.reduce((initalVal, curElem) => {
+        let total_amount = state.cart.reduce((acc, curElem) => {
             let { price, amount } = curElem;
-            initalVal = initalVal + price * amount;
-            return initalVal;
+            acc = acc + price * amount;
+            return acc;
         }, 0);
         return {
             ...state,
             total_amount,
         }
     }
-
 
     return state;
 }

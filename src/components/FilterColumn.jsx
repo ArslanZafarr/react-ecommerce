@@ -46,8 +46,9 @@ const FilterColumn = () => {
       </div>
       <div className="product-category-filter">
         <h3 className="filter-heading">Category</h3>
-        {categoryFilterValue.map((curElem) => {
+        {categoryFilterValue.map((curElem, index) => {
           return <button
+            key={index}
             onClick={updateSearchFilter}
             type='button'
             name='category'
@@ -66,9 +67,9 @@ const FilterColumn = () => {
             aria-label="Default select example"
             onClick={updateSearchFilter} >
             {
-              companyFilterValue.map((curElem) => {
+              companyFilterValue.map((curElem, index) => {
                 return (
-                  <option name="company" value={curElem}>{curElem}</option>
+                  <option key={index} name="company" value={curElem}>{curElem}</option>
                 )
               })}
           </select>

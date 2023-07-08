@@ -5,7 +5,6 @@ import { useCartContext } from '../context/cartContext'
 
 const Header = () => {
     const { total_items } = useCartContext()
-    console.log("🚀 ~ file: Header.jsx:8 ~ Header ~ total_items:", total_items)
     return (
         <div className='header-wrapper'>
             <div className='container-fluid header-container'>

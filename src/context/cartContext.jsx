@@ -4,7 +4,8 @@ import reducer from "../reducers/CartReducer"
 const getLocalCart = () => {
     let localCartData = localStorage.getItem("StoreCart")
 
-    if (localCartData == []) {
+    // if (localCartData == []) {
+    if (!localCartData || localCartData === "null") {
         return []
 
     } else {
@@ -26,7 +27,6 @@ const CartContext = createContext();
 
 
 const CartContextProvider = ({ children }) => {
-
     const [state, dispatch] = useReducer(reducer, initialState)
 
     const addDataToCart = (id, color, amount, cartProduct) => {
@@ -38,10 +38,19 @@ const CartContextProvider = ({ children }) => {
     }
 
 
+
+
+    useEffect(() => {
+        dispatch({ type: "CART_TOTAL_ITEMS" });
+        dispatch({ type: "CART_TOTAL_PRICE" });
+    }, [state.cart]);
+
+
+
+
+
     // To store Items in local Storage 
     useEffect(() => {
-        dispatch({ type: "CART_TOTAL_ITEMS" })
-        dispatch({ type: "CART_TOTAL_PRICE" })
         localStorage.setItem("StoreCart", JSON.stringify(state.cart))
     }, [state.cart])
 
