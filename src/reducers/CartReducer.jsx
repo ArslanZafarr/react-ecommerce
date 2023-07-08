@@ -118,6 +118,18 @@ const CartReducer = (state, action) => {
         }
     }
 
+    if (action.type === "CART_TOTAL_ITEMS") {
+        let updatedCartValue = state.cart.reduce((acc, curElem) => {
+            let { amount } = curElem
+            acc = acc + amount
+            return acc
+        }, 0);
+        return {
+            ...state,
+            total_items: updatedCartValue
+        }
+    }
+
     return state;
 }
 

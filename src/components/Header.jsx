@@ -4,7 +4,8 @@ import { NavLink } from 'react-router-dom'
 import { useCartContext } from '../context/cartContext'
 
 const Header = () => {
-    const { cart } = useCartContext()
+    const { total_items } = useCartContext()
+    console.log("🚀 ~ file: Header.jsx:8 ~ Header ~ total_items:", total_items)
     return (
         <div className='header-wrapper'>
             <div className='container-fluid header-container'>
@@ -39,7 +40,7 @@ const Header = () => {
                         <NavLink to="/cart">
                             Cart
                             {
-                                cart.length > 0 ? <span className='cart-nav-link-number'>{cart.length}</span> : null
+                                total_items > 0 ? <span className='cart-nav-link-number'>{total_items}</span> : null
                             }
 
                         </NavLink>

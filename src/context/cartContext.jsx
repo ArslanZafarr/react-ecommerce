@@ -34,14 +34,13 @@ const CartContextProvider = ({ children }) => {
     }
 
     const removeItem = (id) => {
-        dispatch({
-            type: "REMOVE_ITEM", payload: id
-        })
+        dispatch({ type: "REMOVE_ITEM", payload: id })
     }
 
 
     // To store Items in local Storage 
     useEffect(() => {
+        dispatch({ type: "CART_TOTAL_ITEMS" })
         localStorage.setItem("StoreCart", JSON.stringify(state.cart))
     }, [state.cart])
 
