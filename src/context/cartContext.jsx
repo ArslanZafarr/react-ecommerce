@@ -4,7 +4,7 @@ import reducer from "../reducers/CartReducer"
 const getLocalCart = () => {
     let localCartData = localStorage.getItem("StoreCart")
 
-    if (localCartData === []) {
+    if (localCartData == []) {
         return []
 
     } else {
